@@ -1,0 +1,42 @@
+<ion-view view-title="Sign Up">
+  <ion-content class="padding">
+    <div class="list">
+            <label class="item item-input">
+              <input type="text" placeholder="First Name" ng-model="user.firstname">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="Last Name" ng-model="user.lastname">
+            </label>
+            <label class="item item-input">
+              <input type="email" placeholder="Email" ng-model="user.email">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="Address" ng-model="user.address">
+            </label>
+            <label class="item item-input">
+              <input type="date" placeholder="Date of Birth" ng-model="user.dob">
+            </label>
+            <label class="item item-input">
+              <input type="tel" placeholder="Phone" ng-model="user.phone">
+            </label>
+            <label class="item item-input">
+              <input type="tel" placeholder="Year of Study" ng-model="user.year">
+            </label>
+            <ion-toggle ng-model = "user.car" ng-click="hascar(user)">Car</ion-toggle>
+        <!--    <p>Toggle value 1 is: <b>{{user.car}}</b></p> -->
+            <label class="item item-input">
+              <input id="seat" type="tel" placeholder="Number of Seats" ng-model="user.seats">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="Password" ng-model="user.password">
+            </label>
+            <button class="button button-positive button-block" ng-click="add(user)">Add People</button>
+
+          </div>
+          <div class="list">
+              <div class="item" ng-repeat="item in alldata">
+               {{item.id}}     {{item.firstname}} {{item.lastname}} {{item.email}} {{item.address}} {{item.dob}} {{item.phone}} {{item.year}} {{item.car}} {{item.seats}} {{item.password}}
+              </div>
+          </div>
+</ion-content>
+</ion-view>
