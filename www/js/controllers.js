@@ -7,22 +7,6 @@ angular.module('starter.controllers', [])
 })
 .controller('SignUpCtrl', function($scope, $cordovaSQLite, $timeout){
     $scope.add= function(user){
-    /*  var scrypt = require('scrypt-hash')
-
-      var password = Buffer(user.password)
-      var salt = Buffer('adashofsalt')
-      var N = 1024 * 64
-      var r = 8
-      var p = 1
-      var len = 32
-
-      scrypt(password, salt, N, r, p, len, function (err, hash) {
-    if (err) {
-        return console.error(err)
-    }
-    console.assert(hash.length === len)
-    console.log('The hashed password is', hash.toString('hex'))
-  })*/
 
       console.log(user.firstname);
       var query="INSERT INTO people(firstname,lastname,email,address,dob,phone,year,car,seats, password) VALUES (?,?,?,?,?,?,?,?,?,?)";
