@@ -5,7 +5,6 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var db = null;
 angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services']) /*'ngcordova'*/
 
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -21,8 +20,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    db= window.openDatabase("sqltest2.db","1","example of sqlite","2000");
-    $cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text, email text, address text, dob date, phone integer, year integer, car boolean, seats integer, password text)");
     });
 })
 

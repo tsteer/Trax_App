@@ -23,7 +23,6 @@
               <input type="tel" placeholder="Year of Study" ng-model="user.year">
             </label>
             <ion-toggle ng-model = "user.car" ng-click="hascar(user)">Car</ion-toggle>
-        <!--    <p>Toggle value 1 is: <b>{{user.car}}</b></p> -->
             <label class="item item-input">
               <input id="seat" type="tel" placeholder="Number of Seats" ng-model="user.seats">
             </label>
@@ -32,11 +31,6 @@
             </label>
             <button class="button button-positive button-block" ng-click="add(user)">Add People</button>
 
-          </div>
-          <div class="list">
-              <div class="item" ng-repeat="item in alldata">
-               {{item.id}}     {{item.firstname}} {{item.lastname}} {{item.email}} {{item.address}} {{item.dob}} {{item.phone}} {{item.year}} {{item.car}} {{item.seats}} {{item.password}}
-              </div>
           </div>
 </ion-content>
 </ion-view>
