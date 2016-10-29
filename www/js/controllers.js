@@ -1,5 +1,11 @@
 
 angular.module('starter.controllers', [])
+.controller('LoginCtrl', function($scope, $state){
+  $scope.login = function(user){
+    console.log('login', user);
+    $state.go('tab.dash');
+  }
+})
 .controller('DashCtrl', function($scope, $location, $state) {
   $scope.signUp = function(){
     $state.go('tab.signup');
@@ -28,8 +34,22 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, $http, $cordovaSQLite, $timeout) {
+.controller('AccountCtrl', function($scope, $http) {
+$scope.result = "";
+  $http.get('http://localhost:3000/test?json=1')
+    .success(function(data, status, headers,config){
+      console.log('data success');
+      console.log(data); // for browser console
+      $scope.result = data; // for UI
+    })
+    .error(function(data, status, headers,config){
+      console.log('data error');
+    })
+    .then(function(result){
+      things = result.data;
+    });
+/*
   $scope.settings = {
     enableFriends: true
-  };
+  };*/
 });
