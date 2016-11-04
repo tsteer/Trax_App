@@ -1,17 +1,85 @@
 
 angular.module('starter.controllers', [])
-.controller('LoginCtrl', function($scope, $state){
-  $scope.login = function(user){
-    console.log('login', user);
-    $state.go('tab.dash');
+.controller('LoginCtrl', function($scope, $state, $http){
+  $scope.login = function(email){
+
+    // $.post(url, data, function () {});
+
+    $http({
+      method: 'POST',
+      url: "http://localhost:3000/login", //req.body
+      data: "id=" + 1,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function() {
+      console.log("post success");
+    });
+  //     url: "http://localhost:3000/login?id=1", req.params
+    /*
+   $http.post("http://localhost:3000/login", {id: $scope.id}).success(function(message, status) {
+    console.log("post success");
+    });
+    */
+
+     // console.log('Message posted');
+  //    console.log(id); // for browser console
+      $state.go('tab.dash'); // for UI
+    console.log('login', email);
+  //  $state.go('tab.dash');
+/*.controller('LoginCtrl', function($scope, $state, $http){
+  $scope.data = {};
+  $scope.login = function(){
+    $http.post('http://localhost:3000/login', {id: $scope.id})
+     .success(function(data, status, headers,config){
+      console.log('data success');
+      console.log(id); // for browser console
+      $state.go('tab.dash'); // for UI
+    })
+    .error(function(data, status, headers,config){
+      console.log('data error');
+    })
+ //   .then(function(result){
+ //     things = result.data;
+ //   });
+*/
+//    })
+  }
+  $scope.forgotpassword = function(email){
+    $state.go('forgotpassword');
+        console.log('login to forgotpassword', email);
+  }
+  $scope.signup = function(){
+    $state.go('signup');
+    console.log('signup');
+  }
+})
+.controller('ForgotpasswordCtrl', function($scope, $location, $state) {
+     console.log('forgotpassword to reset', email);
+  $scope.passwordreset = function(){
+  $state.go('passwordresetsent');
+  console.log('forgotpassword to reset', email);
+  }
+})
+.controller('PasswordresetsentCtrl', function($scope, $location, $state) {
+   console.log('reset to login');
+  $scope.login = function(){
+    $state.go('login');
   }
 })
 .controller('DashCtrl', function($scope, $location, $state) {
   $scope.signUp = function(){
-    $state.go('tab.signup');
+    $state.go('signup');
   }
 })
-.controller('SignUpCtrl', function($scope, $cordovaSQLite, $timeout){})
+.controller('SignUpCtrl', function($scope, $location, $state){
+  $scope.adduser = function(){
+    $state.go('signedup');
+  }
+})
+.controller('SignedupCtrl', function($scope, $location, $state){
+  $scope.login = function(){
+    $state.go('login');
+  }
+})
 .controller('CalendarCtrl', function($scope) {})
 .controller('LiftsharingCtrl', function($scope) {})
 .controller('StatisticsCtrl', function($scope) {})
@@ -35,7 +103,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AccountCtrl', function($scope, $http) {
-$scope.result = "";
+  $scope.result = "";
   $http.get('http://localhost:3000/test?json=1')
     .success(function(data, status, headers,config){
       console.log('data success');
@@ -47,7 +115,7 @@ $scope.result = "";
     })
     .then(function(result){
       things = result.data;
-    });
+    });    
 /*
   $scope.settings = {
     enableFriends: true

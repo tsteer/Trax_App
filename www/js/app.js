@@ -39,11 +39,30 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   $stateProvider
   .state('login', {
     url: '/login',
-
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
-      
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'  
   })
+  .state('forgotpassword', {
+    url: '/login/forgotpassword',
+    templateUrl: 'templates/forgotpassword.html',
+    controller: 'ForgotpasswordCtrl'
+  })
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'SignUpCtrl'
+  })
+  .state('signedup', {
+    url: '/signedup',
+    templateUrl: 'templates/signedup.html',
+    controller: 'SignedupCtrl'
+  })
+  .state('passwordresetsent', {
+    url: '/login/passwordresetsent',
+    templateUrl: 'templates/passwordresetsent.html',
+    controller: 'PasswordresetsentCtrl'
+  })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -52,7 +71,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   })
 
   // Each tab has its own nav history stack:
-
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -62,17 +80,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
-
-  .state('tab.signup', {
-    url: '/dash/signup',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-signup.html',
-        controller: 'SignUpCtrl'
-      }
-    }
-  })
-
   .state('tab.liftsharing', {
     url: '/liftsharing',
     views: {
