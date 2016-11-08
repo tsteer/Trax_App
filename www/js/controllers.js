@@ -12,6 +12,8 @@ angular.module('starter.controllers', [])
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function() {
       console.log("post success");
+    }).error(function(err){
+      console.log("check this " + err);
     });
   //     url: "http://localhost:3000/login?id=1", req.params
     /*
@@ -104,7 +106,7 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope, $http) {
   $scope.result = "";
-  $http.get('http://localhost:3000/test?json=1')
+  $http.get('http://localhost:3000/people/1?json=1')
     .success(function(data, status, headers,config){
       console.log('data success');
       console.log(data); // for browser console
