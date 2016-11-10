@@ -12,6 +12,8 @@ angular.module('starter.controllers', [])
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function() {
       console.log("post success");
+      $state.go('tab.dash'); // for UI
+    console.log('login', email);
     }).error(function(err){
       console.log("check this " + err);
     });
@@ -24,8 +26,7 @@ angular.module('starter.controllers', [])
 
      // console.log('Message posted');
   //    console.log(id); // for browser console
-      $state.go('tab.dash'); // for UI
-    console.log('login', email);
+      
   //  $state.go('tab.dash');
 /*.controller('LoginCtrl', function($scope, $state, $http){
   $scope.data = {};
@@ -105,7 +106,18 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AccountCtrl', function($scope, $http) {
-  $scope.result = "";
+
+    $http({
+      method: 'GET',
+      url: "http://localhost:3000/people/1?json=1", 
+      data: "id=" + 1,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function() {
+      console.log("post success");
+    }).error(function(err){
+      console.log("check this " + err);
+    });
+ /* $scope.result = "";
   $http.get('http://localhost:3000/people/1?json=1')
     .success(function(data, status, headers,config){
       console.log('data success');
