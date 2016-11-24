@@ -1,21 +1,36 @@
 
-angular.module('starter.controllers', [])
-.controller('LoginCtrl', function($scope, $state, $http){
+angular.module('starter.controllers', ['ionic', 'ui.router'])
+.controller('LoginCtrl', function($scope, $state, $http, $stateParams){
+
   $scope.login = function(email){
 
     // $.post(url, data, function () {});
 
     $http({
       method: 'POST',
-      url: "http://localhost:3000/login", //req.body
-      data: "id=" + 1,
+      url: "http://localhost:3000/login?json=1", //req.body
+      data: "email=test@test.com", //"id=" + 11,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function() {
+    }).success(function(res) {
       console.log("post success");
-      $state.go('tab.dash'); // for UI
+      var token = {
+        token: res.token
+      };
+      var id= res.id;
+      console.log("check id here sent" + res.id);
+  // var id = apiToken.findUserByToken(token);
+    //  console.log("user" + id);
+            console.log("token key" + token);
+         
+      window.localStorage.setItem( 'tokenkey', JSON.stringify(token) );
+ console.log("the login token: " + token.token);
+     // console.log("the login token: " + tokenkey);
+      //$window.localStorage.setItem('token', res.token);
+     //     console.log("login 2gdfghidf " + $stateParams.token);
+      $state.go('tab.account', {id: id}); // for UI
     console.log('login', email);
     }).error(function(err){
-      console.log("check this " + err);
+      console.log("check this: " + err);
     });
   //     url: "http://localhost:3000/login?id=1", req.params
     /*
@@ -104,34 +119,69 @@ angular.module('starter.controllers', [])
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
+.controller('PeopleCtrl', function($scope, $location, $state, $http) {
+  if(window.localStorage.getItem('tokenkey')){
+    var token = window.localStorage.getItem('tokenkey')
+    console.log("correct!" + token);
+    $http.defaults.headers.common['X-Auth-Token'] = token;
 
-.controller('AccountCtrl', function($scope, $http) {
+    $http({
+      method: 'GET',
+      url: "http://localhost:3000/people/11?json=1", 
+      data: "id=" + 11,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function(data, status, headers,config) {
+      console.log("post success");
+      console.log(headers);
+    }).error(function(err){
+      console.log("check this " + err);
+    });
+  }else{
+    $state.go('login');
+  };
+})
+.controller('AccountCtrl', function($scope, $location, $stateParams, $http, $state) {
+  //var NAME = 'loginToken';
+  //  var session = sessions[token];
+ // console.log("gdfghidf" + $stateParams.token);
+/*  console.log("get storage " + window.localStorage.getItem('tokenkey')); */
+/*
+    $http({
+      method: 'GET',
+      url: "http://localhost:3000/account/:id", 
+      data: "id=" + 11,
+      //params: {token: token},
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function(data, status, headers,config) {
+     // console.log("token is here: " + token);
+    // $stateParams.token
+    console.log("2gdfghidf" + $stateParams.token);
+    
+    // $scope.token = $location.search()['token'];
+    
+     // console.log("headers are" + headers)
+      console.log("new check 1 " + data);
+      console.log("post success");
+    }).error(function(err){
+      console.log("check this 2" + err);
+    });*/
+    var id = $stateParams.id
+    console.log("checkkkkkkk" + $stateParams.id);
+   $scope.profile = function(){
+  $state.go('people', {id: id});
+ };
+ /* 
 
     $http({
       method: 'GET',
       url: "http://localhost:3000/people/1?json=1", 
-      data: "id=" + 1,
+      data: "id=" + 4,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function() {
+    }).success(function(data, status, headers,config) {
+      console.log("new check 1 " + data);
       console.log("post success");
     }).error(function(err){
       console.log("check this " + err);
     });
- /* $scope.result = "";
-  $http.get('http://localhost:3000/people/1?json=1')
-    .success(function(data, status, headers,config){
-      console.log('data success');
-      console.log(data); // for browser console
-      $scope.result = data; // for UI
-    })
-    .error(function(data, status, headers,config){
-      console.log('data error');
-    })
-    .then(function(result){
-      things = result.data;
-    });    
-/*
-  $scope.settings = {
-    enableFriends: true
-  };*/
+ */
 });

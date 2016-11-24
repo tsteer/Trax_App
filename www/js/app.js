@@ -41,6 +41,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'  
+  //  controller: function($stateParams){
+  //    $stateParams.token
+  //  }
   })
   .state('forgotpassword', {
     url: '/login/forgotpassword',
@@ -120,13 +123,21 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     })
 
   .state('tab.account', {
-    url: '/account',
+    url: '/account/:id',
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
+     //  controller: function($stateParams){
+     //   $stateParams.token
+     //  }
       }
     }
+  })
+    .state('people', {
+    url: '/people/:id',
+    templateUrl: 'templates/people.html',
+    controller: 'PeopleCtrl'
   })
 
   .state('tab.statistics', {
