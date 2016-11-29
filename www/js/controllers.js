@@ -5,11 +5,11 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
   $scope.login = function(email){
 
     // $.post(url, data, function () {});
-
+//get email from email field
     $http({
       method: 'POST',
       url: "http://localhost:3000/login?json=1", //req.body
-      data: "email=test@test.com", //"id=" + 11,
+      data: "email=test@test.com", //"id=" + 11,  - email variable here
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function(res) {
       console.log("post success");
@@ -22,7 +22,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     //  console.log("user" + id);
             console.log("token key" + token);
          
-      window.localStorage.setItem( 'tokenkey', JSON.stringify(token) );
+      window.localStorage.setItem( 'tokenkey', token.token );
  console.log("the login token: " + token.token);
      // console.log("the login token: " + tokenkey);
       //$window.localStorage.setItem('token', res.token);
@@ -121,15 +121,14 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 })
 .controller('PeopleCtrl', function($scope, $location, $state, $http) {
   if(window.localStorage.getItem('tokenkey')){
-    var token = window.localStorage.getItem('tokenkey')
-    console.log("correct!" + token);
+    var token = window.localStorage.getItem('tokenkey');
     $http.defaults.headers.common['X-Auth-Token'] = token;
-
+ console.log($http.defaults.headers.common['X-Auth-Token']);
     $http({
       method: 'GET',
-      url: "http://localhost:3000/people/11?json=1", 
-      data: "id=" + 11,
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      url: "http://localhost:3000/people/1?json=1", 
+    //  data: "id=" + 11, // id in url - dont need here otherwise data goe sn here eg changing
+      headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
     }).success(function(data, status, headers,config) {
       console.log("post success");
       console.log(headers);
