@@ -1,4 +1,35 @@
 /* Empty. Add your own CSS if you like */
+
 .center {
  text-align: center;
+}
+.padding{
+background-color: #F2E3BC;
+color: #3D4C47;
+	font-family: 'Raleway', sans-serif;
+font-size: 25%;
+}
+.header-color{
+background-color: #1e2d2f; 
+}
+.header-text{
+	color: #CF5C36;
+	font-family: 'Lobster', cursive;
+	font-size: 600%;
+
+}
+.col{
+background-color: #ffffff;
+	border-color: #1e2d2f;
+	border-width: 1px;
+}
+.button:hover{
+background-color: #CF5C36;
+
+}
+.forgotpassword{
+background-color: #CF5C36;
+}
+.tab-custom{
+	background-color: #CF5C36;
 }

@@ -1,11 +1,108 @@
-<!DOCTYPE html>
-<html>
-<ion-view view-title="People">
-  <ion-content class="padding">
+<ion-view class="header-text" view-title="Trax">
+<ion-nav-bar class="header-color">
 
-<p> Test people page </p>
-{{result.first_name}}
-<p> Test people page </p>
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Lift Sharing Tab -->
+  <ion-tab title="Liftsharing" icon-off="ion-model-s" icon-on="ion-model-s" href="#/tab/liftsharing">
+    <ion-nav-view name="tab-liftsharing"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Calendar Tab -->
+  <ion-tab title="Calendar" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/calendar">
+    <ion-nav-view name="tab-calendar"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Statistics Tab -->
+  <ion-tab title="Statistics" icon-off="ion-arrow-graph-up-right" icon-on="ion-arrow-graph-up-right" href="#/tab/statistics">
+    <ion-nav-view name="tab-statistics"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
+</ion-nav-bar>
+  <ion-content class="padding">
+  <ion-list>
+  <ion-item>
+  <div class="row">
+  <div class="col">
+  First Name: 
+  </div>
+   <div class="col">
+   {{people.first_name}}
+   </div>
+  </div>
+  </ion-item>
+  <ion-item>
+  <div class="row">
+  <div class="col">
+  Last Name: 
+  </div>
+   <div class="col">
+   {{people.last_name}}
+      </div>
+  </div>
+  </ion-item>
+  <ion-item>
+  <div class="row">
+  <div class="col">
+  Date of Birth: 
+    </div>
+   <div class="col">
+   {{people.dob}}
+    </div>
+  </div>
+  </ion-item>
+  <ion-item>
+  <div class="row">
+  <div class="col">
+  Address: 
+    </div>
+   <div class="col">
+   {{people.address}}
+     </div>
+  </div>
+  </ion-item>
+  <ion-item>
+  <div class="row">
+  <div class="col">
+  Email: 
+    </div>
+   <div class="col">
+   {{people.email}}
+     </div>
+  </div>
+  </ion-item>
+    <ion-item>
+    <div class="row">
+  <div class="col">
+  Telephone: 
+    </div>
+   <div class="col">
+   {{people.telephone}}
+     </div>
+  </div>
+  </ion-item>
+      <ion-item>
+      <div class="row">
+  <div class="col">
+  Year of Study: 
+    </div>
+   <div class="col">
+   {{people.year}}
+     </div>
+  </div>
+  </ion-item>
+  </ion-list>
   </ion-content>
-</ion-view>
+
 </html>

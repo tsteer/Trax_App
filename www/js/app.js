@@ -102,7 +102,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
-
+/*
   .state('tab.chats', {
       url: '/chats',
       views: {
@@ -120,7 +120,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
           controller: 'ChatDetailCtrl'
         }
       }
-    })
+    }) */
 
   .state('tab.account', {
     url: '/account/:id',
@@ -139,6 +139,12 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     templateUrl: 'templates/people.html',
     controller: 'PeopleCtrl'
   })
+
+  .state('edituser', {
+    url: '/edituser/:id',
+    templateUrl: 'templates/edituser.html',
+    controller: 'EditUserCtrl'
+  })  
 
   .state('tab.statistics', {
     url: '/statistics',

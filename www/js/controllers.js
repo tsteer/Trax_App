@@ -119,7 +119,10 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
+
+
 .controller('PeopleCtrl', function($scope, $location, $state, $http) {
+
   if(window.localStorage.getItem('tokenkey')){
     var token = window.localStorage.getItem('tokenkey');
     $http.defaults.headers.common['X-Auth-Token'] = token;
@@ -130,8 +133,10 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     //  data: "id=" + 11, // id in url - dont need here otherwise data goe sn here eg changing
       headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
     }).success(function(data, status, headers,config) {
+$scope.people = data;
       console.log("post success");
-      console.log(headers);
+      console.log($scope.people);
+      console.log("check2" + data.first_name);
     }).error(function(err){
       console.log("check this " + err);
     });
@@ -139,6 +144,29 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     $state.go('login');
   };
 })
+.controller('EditUserCtrl', function($scope, $location, $state, $http, $stateParams) {
+  if(window.localStorage.getItem('tokenkey')){
+    var token = window.localStorage.getItem('tokenkey');
+    $http.defaults.headers.common['X-Auth-Token'] = token;
+ console.log("test " + $http.defaults.headers.common['X-Auth-Token']);
+    $http({
+      method: 'GET',
+      url: "http://localhost:3000/edituser/1?json=1", 
+    //  data: "id=" + 11, // id in url - dont need here otherwise data goe sn here eg changing
+      headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
+    }).success(function(data, status, headers,config) {
+$scope.edituser = data;
+      console.log("post success");
+      console.log($scope.edituser);
+      console.log("check2" + data.first_name);
+    }).error(function(err){
+      console.log("check this " + err);
+    });
+  }else{
+    $state.go('login');
+  };
+})
+
 .controller('AccountCtrl', function($scope, $location, $stateParams, $http, $state) {
   //var NAME = 'loginToken';
   //  var session = sessions[token];
@@ -168,6 +196,10 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     console.log("checkkkkkkk" + $stateParams.id);
    $scope.profile = function(){
   $state.go('people', {id: id});
+};
+     $scope.edituser = function(){
+  $state.go('edituser', {id: id});
+
  };
  /* 
 

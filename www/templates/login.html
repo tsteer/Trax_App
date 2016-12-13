@@ -1,5 +1,5 @@
-<ion-view view-title="Login">
-<ion-nav-bar class="bar-stable">
+<ion-view class="header-text" view-title="Trax">
+<ion-nav-bar class="header-color">
 </ion-nav-bar>
   <ion-content class="padding">
     <div class="list">
@@ -8,19 +8,16 @@
         <span class="input-label">Email</span>
         <input type="text" name="email" id="email" ng-model="email">
       </label>
-      <label class="item item-input">
-        <span class="input-label">Password</span>
-        <input type="password" name="password" id="password" ng-model="password">
-      </label>
+
     </div>
-    <button class="button button-block button-positive" ng-click="login(email)"> 
+    <button class="button button-block button-light" ng-click="login(email)"> 
       Log In
     </button>
-    <button class="button button-block button-positive" ng-click="signup()"> 
+    <button class="button button-block button-light" ng-click="signup()"> 
       Sign Up
     </button>
     <div class="center">
-    <button class="button button-clear button-positive" ng-click="forgotpassword(email)">
+    <button class="button button-clear" ng-click="forgotpassword(email)">
     Forgot Password
     </button>
     </div>
