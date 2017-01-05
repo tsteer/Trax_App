@@ -2,14 +2,23 @@
 <ion-nav-bar class="header-color">
 </ion-nav-bar>
   <ion-content class="padding">
+<p> First Name {{edituser.first_name}} </p>
+<p> Last Name {{edituser.last_name}} </p>
+<p> Date of Birth{{edituser.dob}} </p>
+<p> Address {{edituser.address}} </p>
+<p> Email {{edituser.email}} </p>
+<p> Telephone {{edituser.telephone}} </p>
+<p> Year of Study {{edituser.year}} </p>
 
-<p> First Name {{people.first_name}} </p>
-<p> Last Name {{people.last_name}} </p>
-<p> Date of Birth{{people.dob}} </p>
-<p> Address {{people.address}} </p>
-<p> Email {{people.email}} </p>
-<p> Telephone {{people.telephone}} </p>
-<p> Year of Study {{people.year}} </p>
+
+      <label class="item item-input">
+        <span class="input-label">First Name</span>
+        <input type="text" name="first_name" id="first_name" ng-model="first_name">
+      </label>
+          <button class="button button-block button-light" ng-click="savechanges(first_name)"> 
+      Save Changes
+    </button>
+
   </ion-content>
 </ion-view>
 </html>
