@@ -17,6 +17,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       $state.go('tab.account', {id: $rootScope.userid}); 
     }).error(function(err, p2, p3, p4, p5){
       console.log("check this: " + err);
+       $state.go('login'); 
     });
   }
 
@@ -87,6 +88,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
     }).success(function(data, status, headers,config) {
       $scope.people = data;
+      console.log(JSON.stringify(data));
     }).error(function(err){
       console.log("check this " + err);
     });
@@ -113,27 +115,79 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     $state.go('login');
   };
 
-  $scope.savechanges = function(first_name){
-    $http({
-      method: 'POST',
-      url: "http://localhost:3000/edituser/" + userid + "?json=1",  
-      data: "first_name=" + first_name, 
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(res) {
-      $state.go('tab.account', {id: $rootScope.userid}); 
-    }).error(function(err, p2, p3, p4, p5){
-      console.log("check this: " + err);
-    });
+  $scope.savechanges = function(first_name, last_name){
+      if(window.localStorage.getItem('tokenkey')){
+      var token = window.localStorage.getItem('tokenkey');
+      $http.defaults.headers.common['X-Auth-Token'] = token;
+      console.log("first_name " + first_name + "last_name " + last_name);
+      $http({
+        method: 'POST',
+        url: "http://localhost:3000/edituser/" + userid + "?json=1",  
+        data: "first_name=" + first_name + "&last_name=" + last_name, /* + "&dob=" + dob + "&address=" + address + "&email=" + email + "&telephone=" + telephone + "&year=" + year, */ 
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(res) {
+         $state.go('useredited', {id: $rootScope.userid});
+      }).error(function(err){
+        console.log("check this: " + err);
+      });
+       }else{
+    $state.go('login');
+  };
   };
 })
 
+.controller('UserEditedCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
+})
+.controller('DeleteUserCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
+ var userid = $rootScope.userid;
+  if(window.localStorage.getItem('tokenkey')){
+    var token = window.localStorage.getItem('tokenkey');
+    $http.defaults.headers.common['X-Auth-Token'] = token;
+    
+
+   $scope.deleteuser = function(){
+    $state.go('userdeleted', {id: userid});
+  };
+
+    $scope.cancel = function(){
+    $state.go('account', {id: userid});
+  };
+         }else{
+    $state.go('login');
+  };
+})
+.controller('UserDeletedCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
+    $scope.savechanges = function(first_name, last_name){
+      if(window.localStorage.getItem('tokenkey')){
+      var token = window.localStorage.getItem('tokenkey');
+      $http.defaults.headers.common['X-Auth-Token'] = token;
+      console.log("first_name " + first_name + "last_name " + last_name);
+      $http({
+        method: 'POST',
+        url: "http://localhost:3000/edituser/" + userid + "?json=1",  
+        data: "first_name=" + first_name + "&last_name=" + last_name, /* + "&dob=" + dob + "&address=" + address + "&email=" + email + "&telephone=" + telephone + "&year=" + year, */ 
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(res) {
+         $state.go('useredited', {id: $rootScope.userid});
+      }).error(function(err){
+        console.log("check this: " + err);
+      });
+       }else{
+    $state.go('login');
+  };
+  };
+})
 .controller('AccountCtrl', function($scope, $location, $stateParams, $http, $state, $rootScope) {
-  var id = $stateParams.id
+  var id = $rootScope.id
   $scope.profile = function(){
     $state.go('people', {id: id});
   };
 
   $scope.edituser = function(){
     $state.go('edituser', {id: id});
+  };
+
+    $scope.deleteuser = function(){
+    $state.go('deleteuser', {id: id});
   };
 });

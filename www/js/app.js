@@ -146,6 +146,22 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     controller: 'EditUserCtrl'
   })  
 
+  .state('useredited', {
+    url: '/edituser/:id/useredited',
+    templateUrl: 'templates/useredited.html',
+    controller: 'UserEditedCtrl'
+  })
+     .state('deleteuser', {
+    url: '/deleteuser/:id',
+    templateUrl: 'templates/deleteuser.html',
+    controller: 'DeleteUserCtrl'
+  })  
+      .state('userdeleted', {
+    url: '/userdeleted/:id',
+    templateUrl: 'templates/userdeleted.html',
+    controller: 'UserDeletedCtrl'
+  })  
+
   .state('tab.statistics', {
     url: '/statistics',
     views: {
