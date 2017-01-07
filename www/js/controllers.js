@@ -12,8 +12,8 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
         token: res.token
       };  
       window.localStorage.setItem( 'tokenkey', token.token );
-      $rootScope.userid = res.id;
-      $state.go('tab.account', {id: $rootScope.userid}); 
+      $rootScope.id = res.id;
+      $state.go('tab.account', {id: $rootScope.id}); 
     }).error(function(err){
       console.log("check this: " + err);
       $state.go('login'); 
@@ -76,14 +76,14 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 })
 
 
-  var userid = $rootScope.userid;
 .controller('PeopleCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
+  var id = $rootScope.id;
   if(window.localStorage.getItem('tokenkey')){
     var token = window.localStorage.getItem('tokenkey');
     $http.defaults.headers.common['X-Auth-Token'] = token;
     $http({
       method: 'GET',
-      url: "http://localhost:3000/people/" + userid + "?json=1", 
+      url: "http://localhost:3000/people/" + id + "?json=1", 
       headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
     }).success(function(data, status, headers,config) {
       $scope.people = data;
@@ -96,13 +96,13 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 })
 
 .controller('EditUserCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
-  var userid = $rootScope.userid;
+  var id = $rootScope.id;
   if(window.localStorage.getItem('tokenkey')){
     var token = window.localStorage.getItem('tokenkey');
     $http.defaults.headers.common['X-Auth-Token'] = token;
     $http({
       method: 'GET',
-      url: "http://localhost:3000/edituser/" + userid + "?json=1", 
+      url: "http://localhost:3000/edituser/" + id + "?json=1", 
       headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
     }).success(function(data, status, headers,config) {
       $scope.edituser = data;
@@ -120,11 +120,11 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       console.log("first_name " + first_name + "last_name " + last_name);
       $http({
         method: 'POST',
-        url: "http://localhost:3000/edituser/" + userid + "?json=1",  
+        url: "http://localhost:3000/edituser/" + id + "?json=1",  
         data: "first_name=" + first_name + "&last_name=" + last_name, /* + "&dob=" + dob + "&address=" + address + "&email=" + email + "&telephone=" + telephone + "&year=" + year, */ 
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(res) {
-         $state.go('useredited', {id: $rootScope.userid});
+         $state.go('useredited', {id: $rootScope.id});
       }).error(function(err){
         console.log("check this: " + err);
       });
@@ -137,18 +137,18 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 .controller('UserEditedCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
 })
 .controller('DeleteUserCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
- var userid = $rootScope.userid;
+ var id = $rootScope.id;
   if(window.localStorage.getItem('tokenkey')){
     var token = window.localStorage.getItem('tokenkey');
     $http.defaults.headers.common['X-Auth-Token'] = token;
     
 
    $scope.deleteuser = function(){
-    $state.go('userdeleted', {id: userid});
+    $state.go('userdeleted', {id: id});
   };
 
     $scope.cancel = function(){
-    $state.go('account', {id: userid});
+    $state.go('account', {id: id});
   };
          }else{
     $state.go('login');
@@ -162,11 +162,11 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       console.log("first_name " + first_name + "last_name " + last_name);
       $http({
         method: 'POST',
-        url: "http://localhost:3000/edituser/" + userid + "?json=1",  
+        url: "http://localhost:3000/edituser/" + id + "?json=1",  
         data: "first_name=" + first_name + "&last_name=" + last_name, /* + "&dob=" + dob + "&address=" + address + "&email=" + email + "&telephone=" + telephone + "&year=" + year, */ 
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(res) {
-         $state.go('useredited', {id: $rootScope.userid});
+         $state.go('useredited', {id: $rootScope.id});
       }).error(function(err){
         console.log("check this: " + err);
       });
