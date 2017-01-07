@@ -11,13 +11,12 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       var token = {
         token: res.token
       };  
-      var id= res.id;
       window.localStorage.setItem( 'tokenkey', token.token );
       $rootScope.userid = res.id;
       $state.go('tab.account', {id: $rootScope.userid}); 
-    }).error(function(err, p2, p3, p4, p5){
+    }).error(function(err){
       console.log("check this: " + err);
-       $state.go('login'); 
+      $state.go('login'); 
     });
   }
 
@@ -77,8 +76,8 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 })
 
 
-.controller('PeopleCtrl', function($scope, $location, $state, $http, $rootScope) {
   var userid = $rootScope.userid;
+.controller('PeopleCtrl', function($scope, $location, $state, $http, $stateParams, $rootScope) {
   if(window.localStorage.getItem('tokenkey')){
     var token = window.localStorage.getItem('tokenkey');
     $http.defaults.headers.common['X-Auth-Token'] = token;
@@ -88,7 +87,6 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Auth-Token': token}
     }).success(function(data, status, headers,config) {
       $scope.people = data;
-      console.log(JSON.stringify(data));
     }).error(function(err){
       console.log("check this " + err);
     });
@@ -180,6 +178,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 .controller('AccountCtrl', function($scope, $location, $stateParams, $http, $state, $rootScope) {
   var id = $rootScope.id
   $scope.profile = function(){
+    console.log("this is here");
     $state.go('people', {id: id});
   };
 
