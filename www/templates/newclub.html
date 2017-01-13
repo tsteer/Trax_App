@@ -1,0 +1,16 @@
+<ion-view view-title="TRAX">
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" name="club_name" id="club_name" placeholder="Club Name" ng-model="club_name">
+      </label>
+      <label class="item item-input">
+        <input type="text" name="sport" id="sport" placeholder="Sport" ng-model="sport">
+      </label>
+      <label class="item item-input">
+        <input type="email" name="club_email" id="club_email" placeholder="Email" ng-model="club_email">
+      </label>
+      <button class="button button-positive button-block" ng-click="addclub(club_name, sport, club_email)">Submit</button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,40 +1,38 @@
 <ion-view class="header-text" view-title="Trax">
-<ion-header-bar class="header-color">
-</ion-header-bar>
+  <ion-header-bar class="header-color">
+  </ion-header-bar>
   <ion-content class="padding">
-<label class="item item-input">
-        <span class="input-label">First Name</span>
-        <input type="text" name="first_name" id="first_name" ng-model="first_name" value="first_name">
-      </label>
-            <label class="item item-input">
-        <span class="input-label">Last Name</span>
-        <input type="text" name="last_name" id="last_name" ng-model="last_name" value="last_name">
-      </label>
-            <label class="item item-input">
-        <span class="input-label">Date of Birth</span>
-        <input type="text" name="dob" id="dob" ng-model="dob" placeholder="{{edituser.dob}}">
-      </label>
-            <label class="item item-input">
-        <span class="input-label">Address</span>
-        <input type="text" name="address" id="address" ng-model="address" placeholder="{{edituser.address}}">
-      </label>
-            <label class="item item-input">
-        <span class="input-label">Email</span>
-        <input type="text" name="email" id="email" ng-model="email" placeholder="{{edituser.email}}">
-      </label>
-            <label class="item item-input">
-        <span class="input-label">Telephone</span>
-        <input type="text" name="telephone" id="telephone" ng-model="telephone" placeholder="{{edituser.telephone}}">
-      </label>
-            <label class="item item-input">
-        <span class="input-label">Year</span>
-        <input type="text" name="year" id="year" ng-model="year" placeholder="{{edituser.year}}">
-      </label>
-
-          <button class="button button-block button-light" ng-click="savechanges(first_name, last_name)"> 
+    <label class="item item-input">
+      <span class="input-label">First Name</span>
+      <input type="text" name="first_name" id="first_name" ng-model="first_name" value="first_name">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Last Name</span>
+      <input type="text" name="last_name" id="last_name" ng-model="last_name" value="last_name">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Date of Birth</span>
+      <input type="text" name="dob" id="dob" ng-model="dob" placeholder="{{edituser.dob}}">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Address</span>
+      <input type="text" name="address" id="address" ng-model="address" placeholder="{{edituser.address}}">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Email</span>
+      <input type="text" name="email" id="email" ng-model="email" placeholder="{{edituser.email}}">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Telephone</span>
+      <input type="text" name="telephone" id="telephone" ng-model="telephone" placeholder="{{edituser.telephone}}">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Year</span>
+      <input type="text" name="year" id="year" ng-model="year" placeholder="{{edituser.year}}">
+    </label>
+    <button class="button button-block button-light" ng-click="savechanges(first_name, last_name)"> 
       Submit
     </button>
-
   </ion-content>
 </ion-view>
 </html>

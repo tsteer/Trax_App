@@ -41,9 +41,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'  
-  //  controller: function($stateParams){
-  //    $stateParams.token
-  //  }
   })
   .state('forgotpassword', {
     url: '/login/forgotpassword',
@@ -102,35 +99,12 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
-/*
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    }) */
-
   .state('tab.account', {
     url: '/account/:id',
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
-     //  controller: function($stateParams){
-     //   $stateParams.token
-     //  }
       }
     }
   })
@@ -145,6 +119,26 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     templateUrl: 'templates/edituser.html',
     controller: 'EditUserCtrl'
   })  
+    .state('joinclub', {
+    url: '/joinclub/:id',
+    templateUrl: 'templates/joinclub.html',
+    controller: 'JoinClubCtrl'
+  })  
+        .state('newclub', {
+    url: '/newclub/:id',
+    templateUrl: 'templates/newclub.html',
+    controller: 'NewClubCtrl'
+  }) 
+   .state('clubadded', {
+    url: '/newclub/:id/clubadded',
+    templateUrl: 'templates/clubadded.html',
+    controller: 'ClubAddedCtrl'
+  })       
+  .state('clubs', {
+    url: '/clubs/:id',
+    templateUrl: 'templates/clubs.html',
+    controller: 'ClubsCtrl'
+  })    
 
   .state('useredited', {
     url: '/edituser/:id/useredited',
@@ -162,12 +156,12 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     controller: 'UserDeletedCtrl'
   })  
 
-  .state('tab.statistics', {
-    url: '/statistics',
+  .state('tab.committee', {
+    url: '/committee/:id',
     views: {
-      'tab-statistics': {
-        templateUrl: 'templates/tab-statistics.html',
-        controller: 'StatisticsCtrl'
+      'tab-committee': {
+        templateUrl: 'templates/tab-committee.html',
+        controller: 'CommitteeCtrl'
       }
     }
   });
